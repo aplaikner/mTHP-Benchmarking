@@ -1,5 +1,5 @@
 #!/bin/bash
-
+echo $(date)
 first=$2
 last=$3
 
@@ -53,3 +53,4 @@ for filename in "$benchmark_dir"/*; do
 	    rm -f $filename
 	  fi
 done
+echo $(date)
