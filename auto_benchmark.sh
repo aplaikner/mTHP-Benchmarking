@@ -32,7 +32,7 @@ for setting in "${mthp_settings[@]}"; do
 	for filename in "$benchmark_dir"*; do
 	  if [[ -x "$filename" ]]; then  # Check if it's an executable
  	    clean=${filename:$dirlen}
-	    if (($clean >= $first )) && (($clean <= $last)); then
+	    if ((${clean#0} >= $first )) && ((${clean#0} <= $last)); then
 		    echo "Benchmark: $filename" >> "output.txt" 
 		    echo "Setting: $setting" >> "output.txt" 
 		    for((i=0; i < $1; i++)); do

@@ -126,7 +126,7 @@ def plot_average_page_usage():
         ax.legend(loc='upper left', ncols=3)
         ax.set_ylim(0, maximum+1)
 
-        plt.savefig("graphs/benchmark_" + str(int(i%setting_limit)+1)+"_"+str(settings[current_setting][:-3]) + "_pages")
+        plt.savefig("graphs/benchmark_" + str(int(i%setting_limit)+1).zfill(2)+"_"+str(settings[current_setting][:-3]) + "_pages")
         plt.close()
 
 
@@ -143,7 +143,7 @@ def plot_average_memory_usage():
         plt.xlabel("Time in 50ms steps")
         plt.ylabel("Memory consumption in kB")
         plt.grid(True)
-        plt.savefig("graphs/benchmark_"+str(int(i%setting_limit)+1)+"_"+str(settings[current_setting][:-3])+"_mem")
+        plt.savefig("graphs/benchmark_"+str(int(i%setting_limit)+1).zfill(2)+"_"+str(settings[current_setting][:-3])+"_mem")
         plt.close()
 
 for line in file:
