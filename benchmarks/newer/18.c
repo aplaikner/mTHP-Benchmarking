@@ -7,7 +7,7 @@
 
 
 void *fun(void *ptr){
-	char* allocation = alloca(6100 * 1024);
+	char* allocation = alloca(6500 * 1024);
 	sleep(1);
 	return 0;
 }
