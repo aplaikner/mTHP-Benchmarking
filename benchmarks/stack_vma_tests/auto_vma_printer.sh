@@ -1,3 +1,3 @@
-./test04 &
+./test5 &
 pid=$!
 cat /proc/$pid/smaps

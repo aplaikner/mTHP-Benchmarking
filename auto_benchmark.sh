@@ -9,7 +9,6 @@ rm -f graphs/*
 # Compile directory path
 benchmark_dir="benchmarks/newer/"
 dirlen=${#benchmark_dir}
-echo $dirlen 
 
 # Compile all benchmark*.c files
 for file in "$benchmark_dir"*.c; do
