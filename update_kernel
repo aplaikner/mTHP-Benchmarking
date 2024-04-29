@@ -1,5 +1,0 @@
-#!/bin/bash
-
-cd kernelbuild/linux-6.8.7
-make -j8 && make modules -j8 && make modules_install -j8 -s && cp -v arch/x86_64/boot/bzImage /boot/vmlinuz-linuxNEW
-reboot now

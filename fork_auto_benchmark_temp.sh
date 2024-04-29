@@ -34,7 +34,7 @@ for setting in "${mthp_settings[@]}"; do
 	for filename in "$benchmark_dir"*; do
 	  if [[ -x "$filename" ]]; then  # Check if it's an executable
  	    clean=${filename:$dirlen}
-	    if (($clean >= $first )) && (($clean <= $last)); then
+	    if ((${clean#0} >= $first )) && ((${clean#0} <= $last)); then
 		    echo "Benchmark: $filename" >> "output.txt" 
 		    echo "Benchmark: $filename" >> "output2.txt" 
 		    echo "Setting: $setting" >> "output.txt" 
@@ -44,9 +44,10 @@ for setting in "${mthp_settings[@]}"; do
 			echo "Run: $i" >> "output2.txt"
 			./"$filename" &   # Run in background with '&'
 			pid=$!
+			echo $pid
 			pid2=$(($pid+1))
-			#echo $pid
-			#echo $pid2
+			echo $pid
+			echo $pid2
 			(sh mthp_stats $pid >> "output.txt") &
 			sh mthp_stats $pid2 >> "output2.txt" 
 			sed -i '$d' "output.txt"
