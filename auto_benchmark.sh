@@ -14,7 +14,7 @@ dirlen=${#benchmark_dir}
 for file in "$benchmark_dir"*.c; do
   # Extract filename without extension
   filename="${file%.*}"
-  gcc -o "$filename" "$file" -Wall  # Adjust output path
+  gcc -o "$filename" "$file" -Wall -O0 # Adjust output path
   if [ $? -ne 0 ]; then
     echo "Error compiling $file"
     exit 1

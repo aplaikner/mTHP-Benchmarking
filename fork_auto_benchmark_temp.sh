@@ -17,7 +17,7 @@ echo $dirlen
 for file in "$benchmark_dir"*.c; do
   # Extract filename without extension
   filename="${file%.*}"
-  gcc -o "$filename" "$file" -Wall  # Adjust output path
+  gcc -o "$filename" "$file" -Wall -O0  # Adjust output path
   if [ $? -ne 0 ]; then
     echo "Error compiling $file"
     exit 1
@@ -43,11 +43,11 @@ for setting in "${mthp_settings[@]}"; do
 			echo "Run: $i" >> "output.txt"
 			echo "Run: $i" >> "output2.txt"
 			./"$filename" &   # Run in background with '&'
+			sleep 1
 			pid=$!
-			echo $pid
-			pid2=$(($pid+1))
-			echo $pid
-			echo $pid2
+			#echo "USING Parent:$pid"
+			pid2=$(((10#$pid)+2))
+			echo "USING CHILD:$pid2"
 			(sh mthp_stats $pid >> "output.txt") &
 			sh mthp_stats $pid2 >> "output2.txt" 
 			sed -i '$d' "output.txt"
