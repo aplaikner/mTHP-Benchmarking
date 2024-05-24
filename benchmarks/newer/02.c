@@ -7,7 +7,11 @@
 
 
 void *fun(void *ptr){
-	sleep(1);
+	//sleep(60);
+	char allocation[2038*1024];
+	for(int i = 0; i < 2038*1024; i++) {
+		allocation[i]='a';
+	}
 	return 0;
 }
 
