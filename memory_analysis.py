@@ -151,6 +151,7 @@ def plot_average_memory_usage_small_pages():
                 current = 0
                 multiplicator = 1
                 for z in range(0, 7):
+                    # or until 8 and only add if z == 7
                     current += pages_usage_average[i][k][z] * 16 * multiplicator;
                     multiplicator = multiplicator * 2
                 memory_mthp.append(current)
