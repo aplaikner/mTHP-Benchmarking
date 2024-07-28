@@ -6,22 +6,10 @@ last=$3
 rm -f output.txt
 rm -f outputs/*
 rm -f graphs/*
-# Compile directory path
+
 benchmark_dir="benchmarks/thesis/"
 dirlen=${#benchmark_dir}
 
-# Compile all benchmark*.c files
-for file in "$benchmark_dir"*.c; do
-  # Extract filename without extension
-  filename="${file%.*}"
-  gcc -o "$filename" "$file" -Wall -O0 # Adjust output path
-  if [ $? -ne 0 ]; then
-    echo "Error compiling $file"
-    exit 1
-  fi
-done
-
-echo "Compilation complete!"
 
 #mthp_settings=("enable_all_hugepages.sh" "disable_all_but_pmd.sh")
 mthp_settings=("enable_all_hugepages.sh")
@@ -48,9 +36,4 @@ for setting in "${mthp_settings[@]}"; do
 	done
 done
 
-for filename in "$benchmark_dir"/*; do
-	  if [[ -x "$filename" ]]; then  # Check if it's an executable
-	    rm -f $filename
-	  fi
-done
 echo $(date)

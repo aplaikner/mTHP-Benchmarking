@@ -52,6 +52,7 @@ def average_memory_usage():
         for j in range(len(data_runs)):
             acc+= data_runs[j][i]
         averages[i] = acc / len(data_runs)
+        print("(" + str(i) + "," + str(averages[i]) + ") ");
 
     benchmark_averages.append(averages)
     data = []
@@ -110,6 +111,9 @@ def plot_average_page_usage():
         width = 0.1
         multiplier = 0
 
+        if(i== 0): 
+            print(pages_usage_average[i][70])
+
         fig, ax = plt.subplots(layout='constrained',figsize=(30,5))
         for vals in adjusted:
             offset = width * multiplier 
@@ -128,6 +132,33 @@ def plot_average_page_usage():
 
         plt.savefig("graphs/benchmark_" + str(int(i%setting_limit)+1).zfill(2)+"_"+str(settings[current_setting][:-3]) + "_pages")
         plt.close()
+
+
+def plot_average_memory_usage_small_pages():
+    global pages_usage_averagel
+    # iterate over benchmarks
+    setting_limit = int(len(pages_usage_average) / len(settings))
+    current_setting = -1
+    averages = []
+    for i in range(len(pages_usage_average)):
+        if i%setting_limit == 0: current_setting+=1
+        adjusted = []
+        # iterate over each index (2^index)
+
+        memory_mthp = []
+        if(i== 0): 
+            for k in range(len(pages_usage_average[i])):
+                current = 0
+                multiplicator = 1
+                for z in range(0, 7):
+                    current += pages_usage_average[i][k][z] * 16 * multiplicator;
+                    multiplicator = multiplicator * 2
+                memory_mthp.append(current)
+        for i in range(len(memory_mthp)):
+            print("(" + str(i) + "," + str(memory_mthp[i]) + ") ");
+
+
+
 
 
 def plot_average_memory_usage():
@@ -189,8 +220,9 @@ average_page_usage()
 
 
 # create graphs
-plot_average_memory_usage()
-plot_average_page_usage()
+#plot_average_memory_usage()
+#plot_average_page_usage()
+plot_average_memory_usage_small_pages()
 #print(settings)
 #print(benchmark_averages)
 #print(pages_usage_average)
